@@ -5,9 +5,7 @@ import connectDB from "./config/db.js";
 import contactRouter from "./routes/contactRouter.js";
 
 const app = express();
-const port = process.env.PORT || 4000;
-
-app.use(express.json());
+const port = process.env.PORT;
 
 app.use(
   cors({
@@ -16,6 +14,8 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(express.json());
 
 await connectDB();
 app.get("/", (req, res) => {
