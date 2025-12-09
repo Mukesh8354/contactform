@@ -11,7 +11,10 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://remarkable-sprinkles-2cf9b8.netlify.app",
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   })
