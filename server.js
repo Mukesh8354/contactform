@@ -7,11 +7,29 @@ import contactRouter from "./routes/contactRouter.js";
 const app = express();
 const port = process.env.PORT;
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://remarkable-sprinkles-2cf9b8.netlify.app"
+  );
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
 app.use(
   cors({
-    origin: ["https://remarkable-sprinkles-2cf9b8.netlify.app"],
-    methods: ["GET", "POST"],
-    credentials: true,
+    origin: [
+      "http://localhost:5173",
+      "https://remarkable-sprinkles-2cf9b8.netlify.app",
+    ],
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 
