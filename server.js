@@ -26,7 +26,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://remarkable-sprinkles-2cf9b8.netlify.app",
+      "https://storied-starship-815a9e.netlify.app",
     ],
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
