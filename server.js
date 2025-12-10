@@ -11,7 +11,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:5173");
   res.header(
     "Access-Control-Allow-Origin",
-    "https://remarkable-sprinkles-2cf9b8.netlify.app"
+    "https://storied-starship-815a9e.netlify.app"
   );
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
