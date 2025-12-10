@@ -9,13 +9,12 @@ const port = process.env.PORT;
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://storied-starship-815a9e.netlify.app",
+  "https://unrivaled-conkies-987a7e.netlify.app",
 ];
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow non-browser clients (e.g. Postman)
       if (!origin) return callback(null, true);
 
       if (allowedOrigins.includes(origin)) {
