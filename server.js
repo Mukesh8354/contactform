@@ -7,29 +7,24 @@ import contactRouter from "./routes/contactRouter.js";
 const app = express();
 const port = process.env.PORT;
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://storied-starship-815a9e.netlify.app"
-  );
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  res.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  next();
-});
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://storied-starship-815a9e.netlify.app",
+];
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://storied-starship-815a9e.netlify.app",
-    ],
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
+    origin: (origin, callback) => {
+      // Allow non-browser clients (e.g. Postman)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("CORS Not Allowed: " + origin));
+      }
+    },
+    methods: ["GET", "POST"],
     credentials: true,
   })
 );
